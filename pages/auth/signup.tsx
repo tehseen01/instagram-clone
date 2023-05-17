@@ -1,10 +1,7 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { SignUpForm } from "../../components/forms";
 
 const signup = () => {
-  const router = useRouter();
-
   return (
     <main className="md:w-3/4 m-auto  flex items-center justify-center min-h-screen">
       <article className="flex flex-col gap-4 items-center justify-center max-w-[380px] sm:gap-4">
