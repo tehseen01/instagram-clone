@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Stories from "../components/stories/Stories";
 import Posts from "../components/posts/Posts";
 import Suggestions from "../components/home/Suggestions";
 import MiniProfile from "../components/home/MiniProfile";
