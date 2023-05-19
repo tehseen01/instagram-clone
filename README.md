@@ -1,86 +1,71 @@
 # Instagram Clone
 
-This repository contains an Instagram clone, a web application built using modern web technologies to replicate some of the core features and functionalities of the popular social media platform, Instagram.
+This repository contains the code for an Instagram clone, a frontend web application built using Next.js, Tailwind CSS, Redux Toolkit, and React Query. It aims to replicate the core features and design of the popular social media platform, Instagram.
+
+![Instagram Clone](https://github.com/tehseen01/instagram-clone/assets/86504467/18b1b53b-68ad-4808-ac98-253112b17206)
+![Mobile version](https://github.com/tehseen01/instagram-clone/assets/86504467/a839716d-ccb2-49ba-ad11-e79f6c6c5d93)
+
 
 ## Features
-- User registration and authentication
-- Profile creation and customization
-- Posting photos and videos
-- Following other users
-- Liking and commenting on posts
-- Direct messaging between users
-- Explore page to discover new content
-- Notifications for various activities
+
+- User authentication: Sign up, log in, and log out functionalities.
+- User profile: Display user information, profile picture, and the ability to update the profile picture.
+- Home feed: Display posts from the users that the logged-in user follows.
+- Explore page: Discover new users and posts.
+- Create post: Upload images with captions and post them.
+- Like and comment: Interact with posts by liking and commenting on them.
+- Responsive design: Mobile-friendly layout for a seamless experience on different devices.
 
 ## Technologies Used
-- **Frontend:** Next.js, Tailwind CSS, Typescript, redux-toolkit 
-- **Backend:** Node.js (Express.js)
-- **Database:** MongoDB
 
-### More details about backend go to this repository https://github.com/tehseen01/social-api.git
+- Next.js: A React framework for building server-side rendered and static websites.
+- Tailwind CSS: A utility-first CSS framework for building custom user interfaces.
+- Redux Toolkit: A simplified state management library for React applications.
+- React Query: A library for managing server state and caching data in React applications.
+- Firebase: A platform for building web and mobile applications.
+- Cloud Firestore: A NoSQL cloud database for storing and syncing data.
+- Cloud Storage: A service for storing user-uploaded images.
 
-## Installation
+## Backend
 
-1.  Create a folder 
-2.  Clone the repository:
+The backend for this project is developed in a separate repository. You can find the code and documentation for the backend API in the [social-api](https://github.com/tehseen01/social-api) repository.
 
-```bash
-# Frontend repository
-git clone https://github.com/tehseen01/instagram-clone.git
+## Getting Started
 
-# backend repository
-git clone https://github.com/tehseen01/social-api.git
-```
+To get a local copy of the project up and running, follow these steps:
 
-2. Install the dependencies for frontend:
+1. Clone the repository:
 
-```bash
-# Go to the backend directory
-yarn install
+   ```bash
+   git clone https://github.com/tehseen01/instagram-clone.git
+   ```
 
-# Go to the frontend directory
-npm install
-```
+2. Install the dependencies:
 
+   ```bash
+   cd instagram-clone
+   npm install
+   ```
+   
 3. Set up environment variables:
-   - Create a `.env` file in the `frontend` directory.
+   - Create a `.env` file in the `root` directory.
    - Add the following variables to the .env file:
 
 ```bash
 NEXT_PUBLIC_API_URL=http://localhost:8080/api/
 ```
-  - Create a `.env` file in the `backend` directory.
-  - Add the following variables to the .env file:
 
-```
-PORT = 8080
-MONGO_URL = <your-mongodb-connection-string>
-JWT_SECRET = <your-jwt-secret-key>
+4. Start the development server:
 
-SMPT_USER = <your-smpt-gmail>
-SMPT_PASSWORD = <your-smpt-password>
+   ```bash
+   npm run dev
+   ```
 
-CLOUDINARY_NAME= <your-cloudinary-name>
-CLOUDINARY_API_KEY =<your-coudinary-api-key>
-CLOUDINARY_API_SECRET = <your-coudinary-api-secret>
-```
-
-4. Start the development server for both the backend and frontend:
-
-```bash
-# Go to the backend directory
-cd instagram-clone/backend
-yarn start
-
-# Go to the frontend directory
-cd ../frontend
-npm run dev
-```
-
-The development server for the backend will start running at `http://localhost:8080`, and the frontend will be accessible at `http://localhost:3000`.
+The web application should now be running at `http://localhost:3000`.
 
 ## Contributing
 
+Contributions are welcome! If you find any bugs or want to suggest new features, please open an issue or submit a pull request.
 We welcome contributions from the developer community to enhance the Instagram clone. To contribute, follow these steps:
 
 1. Fork the repository to your GitHub account.
