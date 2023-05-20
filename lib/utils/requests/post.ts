@@ -39,10 +39,16 @@ export const fetchPosts = async (): Promise<IAllPosts> => {
   }
 };
 
-export const fetchFollowingsPost = async (): Promise<IPost[]> => {
+interface ISuggestion {
+  page: number;
+  totalPages: number;
+  posts: IPost[];
+}
+
+export const userFeedPosts = async (page: number): Promise<ISuggestion> => {
   try {
-    const { data } = await makeRequest.get("/posts/followings");
-    return data.posts;
+    const { data } = await makeRequest.get(`/posts/feed?page=${page}`);
+    return data;
   } catch (err) {
     if (err.response && err.response.data) {
       throw new Error(err.response.data.message);
@@ -121,19 +127,6 @@ export const deleteComment = async (ids: {
 export const getSinglePost = async (id: string): Promise<IPost> => {
   try {
     const { data } = await makeRequest.get(`/posts/post/${id}`);
-    return data;
-  } catch (err) {
-    if (err.response && err.response.data) {
-      throw new Error(err.response.data.message);
-    }
-    console.log(err);
-    throw new Error(err.message);
-  }
-};
-
-export const suggestionPosts = async (): Promise<IPost[]> => {
-  try {
-    const { data } = await makeRequest.get(`/posts/timeline/all`);
     return data;
   } catch (err) {
     if (err.response && err.response.data) {
