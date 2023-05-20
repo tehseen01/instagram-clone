@@ -46,9 +46,7 @@ const post = () => {
           img={data?.img}
           likes={data?.likes}
           time={data?.createdAt}
-          userImg={data?.userId?.profilePicture}
           user={data?.userId}
-          username={data?.userId?.username}
         />
       ) : null}
 
