@@ -13,9 +13,9 @@ import {
   setProfilePicture,
   setUsername,
 } from "../../redux/slices/profileSlice";
-import { DataMessage, IUpdateProfile } from "../../lib/interface";
+import { DataMessage, IError, IUpdateProfile } from "../../lib/interface";
 import Spinner from "../loaders/Spinner";
-import { updateProfile } from "../../lib/utils/requests";
+import { updateProfile } from "../../lib/requests";
 
 const EditProfile = () => {
   const dispatch = useAppDispatch();
@@ -30,12 +30,15 @@ const EditProfile = () => {
   };
 
   const queryClient = useQueryClient();
-  const { mutate, isLoading, isError, error } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: updateProfile,
     onSuccess: (data) => {
       dispatch(closeEditProfile(false));
       toast.success(data.message);
       queryClient.invalidateQueries(["user"]);
+    },
+    onError: (error: IError) => {
+      toast.error(error.message);
     },
   });
 

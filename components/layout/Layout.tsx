@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loader from "../loaders/Loader";
 import LikeModal from "../modals/LikeModal";
 import { useAppSelector } from "../../redux/store";
-import { getProfile } from "../../lib/utils/requests";
+import { getProfile } from "../../lib/requests";
 import Error from "../../pages/_error";
 
 interface ILayoutProp {

@@ -10,7 +10,7 @@ import Loader from "../loaders/Loader";
 import Spinner from "../loaders/Spinner";
 
 import { useAppSelector } from "../../redux/store";
-import { userFeedPosts } from "../../lib/utils/requests";
+import { userFeedPosts } from "../../lib/requests";
 
 interface IErrorProp {
   status: number;

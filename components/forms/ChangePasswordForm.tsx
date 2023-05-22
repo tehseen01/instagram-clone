@@ -4,7 +4,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { DataMessage, IUpdatePassword } from "../../lib/interface";
 import { changePasswordSchema } from "../../lib/validation";
-import { updatePassword } from "../../lib/utils/requests";
+import { updatePassword } from "../../lib/requests";
 
 const initialValues: IUpdatePassword = {
   oldPassword: "",

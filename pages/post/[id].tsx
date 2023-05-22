@@ -10,7 +10,9 @@ import PostMenuModal from "../../components/modals/PostMenuModal";
 import CommentModal from "../../components/comments/CommentModal";
 
 import { useAppSelector } from "../../redux/store";
-import { getSinglePost } from "../../lib/utils/requests";
+import { getSinglePost } from "../../lib/requests";
+import { IError } from "../../lib/interface";
+import { toast } from "react-toastify";
 
 const post = () => {
   const router = useRouter();
@@ -23,6 +25,9 @@ const post = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["posts", id],
     queryFn: () => getSinglePost(id),
+    onError: (error: IError) => {
+      toast.error(error.message);
+    },
   });
 
   if (isLoading) {

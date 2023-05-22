@@ -8,7 +8,9 @@ import { handleImage } from "../../lib/utils/handleImage";
 import { closeNewPostModal } from "../../redux/slices/modalSlice";
 import Spinner from "../loaders/Spinner";
 import { useRouter } from "next/router";
-import { createPost } from "../../lib/utils/requests";
+import { createPost } from "../../lib/requests";
+import { IError } from "../../lib/interface";
+import { toast } from "react-toastify";
 
 const NewPost = () => {
   const router = useRouter();
@@ -30,6 +32,9 @@ const NewPost = () => {
       queryClient.invalidateQueries({
         queryKey: ["user", profile],
       });
+    },
+    onError: (error: IError) => {
+      toast.error(error.message);
     },
   });
 

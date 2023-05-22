@@ -1,8 +1,10 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import GalleryImg from "../common/GalleryImg";
-import { fetchPosts } from "../../lib/utils/requests";
+import { fetchPosts } from "../../lib/requests";
 import Loader from "../loaders/Loader";
+import { IError } from "../../lib/interface";
+import { toast } from "react-toastify";
 
 export const ExploreGallery = () => {
   const { data, isLoading } = useQuery({
@@ -10,6 +12,9 @@ export const ExploreGallery = () => {
     queryFn: fetchPosts,
     refetchOnWindowFocus: false,
     retry: 2,
+    onError: (error: IError) => {
+      toast.error(error.message);
+    },
   });
 
   if (isLoading) {

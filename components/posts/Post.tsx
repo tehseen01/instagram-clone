@@ -9,7 +9,7 @@ import { useAppDispatch } from "../../redux/store";
 import { handelLikesUser, openLikeModal } from "../../redux/slices/modalSlice";
 import { BsHeartFill } from "react-icons/bs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { likePost } from "../../lib/utils/requests";
+import { likePost } from "../../lib/requests";
 import { toast } from "react-toastify";
 import { useState } from "react";
 
@@ -50,7 +50,7 @@ const Post = ({ id, img, caption, likes, time, user }: IPostProp) => {
           height={450}
           src={img}
           alt={`this post uploaded by ${user?.username} at ${time}`}
-          className="object-scale-down  md:border-x"
+          className="object-scale-down  md:border-x w-full"
           onDoubleClick={() => {
             mutate(id);
             setAnimateHeart(true);

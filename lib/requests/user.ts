@@ -1,5 +1,5 @@
 import { makeRequest } from ".";
-import { DataMessage, IUpdateProfile, IUser } from "../../interface";
+import { DataMessage, IUpdateProfile, IUser } from "../interface";
 
 export const getProfile = async (): Promise<IUser> => {
   try {

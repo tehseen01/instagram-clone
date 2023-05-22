@@ -7,7 +7,7 @@ import {
 } from "../../redux/slices/profileSlice";
 import { useAppDispatch } from "../../redux/store";
 
-import { logoutUser } from "../../lib/utils/requests";
+import { logoutUser } from "../../lib/requests";
 
 const ProfileSetting = () => {
   const router = useRouter();

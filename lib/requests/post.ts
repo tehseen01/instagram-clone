@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import { makeRequest } from ".";
-import { DataMessage, IPost } from "../../interface";
+import { DataMessage, IPost } from "../interface";
 
 interface ICreatePost {
   caption: string;
