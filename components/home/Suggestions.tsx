@@ -61,7 +61,13 @@ const Suggestions = () => {
                 />
               </Link>
               <div className="flex-1">
-                <h2 className="font-semibold">{user?.username}</h2>
+                <Link
+                  href="/[profile]"
+                  as={`/${user?.username}`}
+                  className="font-semibold"
+                >
+                  {user?.username}
+                </Link>
                 <h3 className="text-xs text-gray-500">{user?.name}</h3>
               </div>
               <button

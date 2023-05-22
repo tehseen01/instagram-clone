@@ -9,9 +9,9 @@ import { openProfileSetting } from "../../redux/slices/profileSlice";
 import { IUser } from "../../lib/interface";
 
 interface IProfileInfoProps {
-  owner: IUser
-  data: IUser
-  editProfile: () => void
+  owner: IUser;
+  data: IUser;
+  editProfile: () => void;
 }
 
 const ProfileInfo = ({ editProfile, owner, data }: IProfileInfoProps) => {
@@ -28,9 +28,16 @@ const ProfileInfo = ({ editProfile, owner, data }: IProfileInfoProps) => {
           <BsChevronLeft className="w-5 h-5" />
         </div>
         <div className="font-semibold">{data?.username}</div>
-        <div>
-          <BsThreeDots className="w-5 h-5" />
-        </div>
+        {data?._id === owner._id ? (
+          <button onClick={() => dispatch(openProfileSetting(true))}>
+            <BsGearWide className="w-6 h-6" />
+          </button>
+        ) : (
+          <button>
+            {" "}
+            <BsThreeDots className="w-5 h-5" />
+          </button>
+        )}
       </div>
       {/* PROFILE INFO */}
       <div className="grid md:col-30-70 max-md:col-25-auto gap-x-6 items-center max-md:px-4 max-md:py-2">
@@ -54,15 +61,19 @@ const ProfileInfo = ({ editProfile, owner, data }: IProfileInfoProps) => {
                 profileData={data}
               />
             )}
-            {data?._id === owner._id ? (
-              <button onClick={() => dispatch(openProfileSetting(true))}>
-                <BsGearWide className="w-6 h-6" />
-              </button>
-            ) : (
-              <button>
-                {" "}
-                <BsThreeDots className="w-5 h-5" />
-              </button>
+            {width > 768 && (
+              <>
+                {data?._id === owner._id ? (
+                  <button onClick={() => dispatch(openProfileSetting(true))}>
+                    <BsGearWide className="w-6 h-6" />
+                  </button>
+                ) : (
+                  <button>
+                    {" "}
+                    <BsThreeDots className="w-5 h-5" />
+                  </button>
+                )}
+              </>
             )}
           </div>
           {width < 768 && (
