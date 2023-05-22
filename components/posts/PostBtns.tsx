@@ -10,29 +10,30 @@ import {
 } from "react-icons/bs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { likePost } from "../../lib/utils/requests";
-import { IUser } from "../../lib/interface";
+import { DataMessage, IError, IUser } from "../../lib/interface";
 import { toast } from "react-toastify";
 
 interface IPostBtnProp {
   id: string;
   likes: IUser[];
+  data: DataMessage;
+  mutate: (id: string) => void;
+  liked: boolean;
+  setLiked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const PostBtn = ({ likes, id }: IPostBtnProp) => {
-  const [liked, setLiked] = useState(false);
-
+const PostBtn = ({
+  likes,
+  id,
+  mutate,
+  data,
+  liked,
+  setLiked,
+}: IPostBtnProp) => {
   const dispatch = useAppDispatch();
 
   const queryClient = useQueryClient();
   const userData: IUser = queryClient.getQueryData(["user"]);
-
-  const { mutate, data } = useMutation(likePost, {
-    onSuccess: (data) => {
-      const postId = id;
-      queryClient.invalidateQueries(["posts", postId]);
-      toast.success(data.message);
-    },
-  });
 
   useEffect(() => {
     let isLiked = false;
