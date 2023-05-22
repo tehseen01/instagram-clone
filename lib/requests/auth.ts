@@ -1,5 +1,5 @@
 import { makeRequest } from ".";
-import { DataMessage, IUpdatePassword, IUser } from "../../interface";
+import { DataMessage, IUpdatePassword, IUser } from "../interface";
 
 interface IRegisterUser {
   name: string;

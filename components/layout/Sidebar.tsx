@@ -19,7 +19,7 @@ import SidebarProfile from "./SidebarProfile";
 import { useDispatch } from "react-redux";
 import { IUser } from "../../lib/interface";
 import { openNewPostModal } from "../../redux/slices/modalSlice";
-import { logoutUser } from "../../lib/utils/requests";
+import { logoutUser } from "../../lib/requests";
 
 interface SideBarProp {
   data: IUser;

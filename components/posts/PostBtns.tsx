@@ -9,7 +9,7 @@ import {
   BsSend,
 } from "react-icons/bs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { likePost } from "../../lib/utils/requests";
+import { likePost } from "../../lib/requests";
 import { DataMessage, IError, IUser } from "../../lib/interface";
 import { toast } from "react-toastify";
 

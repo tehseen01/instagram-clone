@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
-import { loginUser } from "../../lib/utils/requests";
+import { loginUser } from "../../lib/requests";
 import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";

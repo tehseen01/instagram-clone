@@ -4,8 +4,13 @@ import Image from "next/image";
 import { closeLikeModal } from "../../redux/slices/modalSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { IUser } from "../../lib/interface";
+import Link from "next/link";
+import { useFollowControl, useProfileData } from "../../hooks";
 
 const LikeModal = () => {
+  const { follow } = useFollowControl();
+  const { userData } = useProfileData();
+
   const dispatch = useAppDispatch();
   const { likesUser } = useAppSelector((state) => state.modal);
 
@@ -35,18 +40,37 @@ const LikeModal = () => {
             likesUser.map((user: IUser) => (
               <Suspense fallback={<div>loading...</div>}>
                 <div key={user._id} className="flex items-center gap-2 mb-2">
-                  <Image
-                    src={user?.profilePicture || "/blank-profile.jpg"}
-                    width={55}
-                    height={55}
-                    alt={user?.username}
-                  />
+                  <div className="w-[55px] h-[55px] overflow-hidden rounded-full">
+                    <Image
+                      src={user?.profilePicture || "/blank-profile.jpg"}
+                      width={55}
+                      height={55}
+                      alt={user?.username}
+                      className="w-[55px] h-[55px] object-cover"
+                    />
+                  </div>
                   <div className="flex-1">
-                    <span className="font-bold">{user?.username}</span>
+                    <Link
+                      href={"[profile]"}
+                      as={`${user.username}`}
+                      className="font-bold"
+                      onClick={() => dispatch(closeLikeModal(false))}
+                    >
+                      {user?.username}
+                    </Link>
                     <p className="text-gray-500">{user?.name}</p>
                   </div>
-                  <button className="bg-blue-400 text-white px-2 py-1 rounded-md">
-                    follow
+                  <button
+                    className={`${
+                      userData.followings.includes(user?._id)
+                        ? "bg-gray-200"
+                        : "bg-blue-400 text-white"
+                    } px-2 py-1 rounded-md`}
+                    onClick={() => follow.mutate(user?._id)}
+                  >
+                    {userData.followings.includes(user?._id)
+                      ? "unFollow"
+                      : "follow"}
                   </button>
                 </div>
               </Suspense>

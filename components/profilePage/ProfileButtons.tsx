@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { IUser } from "../../lib/interface";
-import { followOrUnFollowUser } from "../../lib/utils/requests";
+import { IError, IUser } from "../../lib/interface";
+import { followOrUnFollowUser } from "../../lib/requests";
+import { toast } from "react-toastify";
 
 interface IProfileBtnProps {
   owner: IUser;
@@ -20,6 +21,9 @@ const ProfileButtons = ({
     mutationFn: followOrUnFollowUser,
     onSuccess: () => {
       queryClient.invalidateQueries(["user"]);
+    },
+    onError: (error: IError) => {
+      toast.error(error.message);
     },
   });
 

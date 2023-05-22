@@ -2,7 +2,7 @@ import { useDebounce } from "use-debounce";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { MdClose } from "react-icons/md";
-import { searchUser } from "../../lib/utils/requests";
+import { searchUser } from "../../lib/requests";
 import Link from "next/link";
 
 export const Searchbar = () => {

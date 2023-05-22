@@ -3,10 +3,10 @@ import { BsChevronLeft, BsGearWide, BsThreeDots } from "react-icons/bs";
 import PostsFollowsCount from "./PostsFollowsCount";
 import ProfileButtons from "./ProfileButtons";
 import { useRouter } from "next/router";
-import useWindowSize from "../../hooks/useWindowSize";
 import { useAppDispatch } from "../../redux/store";
 import { openProfileSetting } from "../../redux/slices/profileSlice";
 import { IUser } from "../../lib/interface";
+import { useWindowSize } from "../../hooks";
 
 interface IProfileInfoProps {
   owner: IUser;

@@ -15,14 +15,13 @@ import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { closePostModal } from "../../redux/slices/modalSlice";
 import formattedDate from "../../lib/utils/formatedDate";
-import { IPost } from "../../lib/interface";
-import {
-  deleteComment,
-  getProfile,
-  getSinglePost,
-} from "../../lib/utils/requests";
+import { IError, IPost } from "../../lib/interface";
+import { deleteComment, getSinglePost } from "../../lib/requests";
+import { useProfileData } from "../../hooks";
 
 const CommentModal = () => {
+  const { userData } = useProfileData();
+
   const [liked, setLiked] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -35,11 +34,9 @@ const CommentModal = () => {
   const { data: postData, isLoading } = useQuery({
     queryKey: ["posts", postModal.id],
     queryFn: () => getSinglePost(postModal.id),
-  });
-
-  const { data: user } = useQuery({
-    queryKey: ["user"],
-    queryFn: getProfile,
+    onError: (error: IError) => {
+      toast.error(error.message);
+    },
   });
 
   const { mutate } = useMutation({
@@ -47,6 +44,9 @@ const CommentModal = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries(["posts"]);
       toast.success(data.message);
+    },
+    onError: (error: IError) => {
+      toast.error(error.message);
     },
   });
 
@@ -146,8 +146,8 @@ const CommentModal = () => {
                         <div className="flex gap-3 items-center">
                           <span> {formattedDate(comment?.date)}</span>
                           <div>reply</div>
-                          {(user?._id === comment?.userId?._id ||
-                            user?.posts?.some(
+                          {(userData?._id === comment?.userId?._id ||
+                            userData?.posts?.some(
                               (post: IPost) => post._id === postModal.id
                             )) && (
                             <div

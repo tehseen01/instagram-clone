@@ -17,7 +17,9 @@ import {
 } from "../redux/slices/profileSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 
-import { fetchUser, getProfile } from "../lib/utils/requests";
+import { fetchUser, getProfile } from "../lib/requests";
+import { IError } from "../lib/interface";
+import { toast } from "react-toastify";
 
 const profile = () => {
   const router = useRouter();
@@ -32,6 +34,9 @@ const profile = () => {
     queryKey: ["user", profile],
     queryFn: () => fetchUser(profile as string),
     // refetchOnWindowFocus: false,
+    onError: (error: IError) => {
+      toast.error(error.message);
+    },
   });
 
   const { data: owner } = useQuery({

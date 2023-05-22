@@ -2,7 +2,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useAppSelector } from "../../redux/store";
-import { postComment } from "../../lib/utils/requests";
+import { postComment } from "../../lib/requests";
 
 const AddComment = ({ id }: { id: string }) => {
   const [addComment, setAddComment] = useState("");

@@ -3,7 +3,7 @@ import React from "react";
 import { signUpSchema } from "../../lib/validation";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { signUpUser } from "../../lib/utils/requests";
+import { signUpUser } from "../../lib/requests";
 
 interface IInitialValues {
   email: string;

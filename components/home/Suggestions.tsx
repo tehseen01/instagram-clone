@@ -4,7 +4,8 @@ import Loader from "../loaders/Loader";
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { followOrUnFollowUser, suggestedUser } from "../../lib/utils/requests";
+import { followOrUnFollowUser, suggestedUser } from "../../lib/requests";
+import { IError } from "../../lib/interface";
 
 const Suggestions = () => {
   const [btnText, setBtnText] = useState<{ [key: string]: boolean }>({});
@@ -17,6 +18,9 @@ const Suggestions = () => {
     queryKey: ["allUsers"],
     queryFn: suggestedUser,
     refetchOnWindowFocus: false,
+    onError: (error: IError) => {
+      toast.error(error.message);
+    },
   });
 
   const { mutate } = useMutation({
