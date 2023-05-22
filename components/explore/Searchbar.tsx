@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { MdClose } from "react-icons/md";
 import { searchUser } from "../../lib/utils/requests";
+import Link from "next/link";
 
 export const Searchbar = () => {
   const [keyword, setKeyword] = useState("");
@@ -49,9 +50,11 @@ export const Searchbar = () => {
       {searchResult && searchResult?.length > 0 && (
         <div className="absolute top-12 left-0 bg-white z-50 w-full md:w-1/2 max-md:h-screen p-4 border-t">
           {searchResult?.map((user) => (
-            <div
+            <Link
+              href="/[profile]"
+              as={`/${user?.username}`}
               key={user?._id}
-              className="flex items-center justify-center gap-2 mb-2"
+              className="flex items-center justify-center gap-2 mb-2 hover:bg-gray-100 p-2"
             >
               <Image
                 src={user?.profilePicture || "/blank-profile.jpg"}
@@ -64,7 +67,7 @@ export const Searchbar = () => {
                 <h2 className="font-semibold">{user?.username}</h2>
                 <h3 className="text-slate-500">{user?.name}</h3>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}
