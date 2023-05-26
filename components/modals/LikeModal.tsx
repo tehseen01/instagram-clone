@@ -38,7 +38,7 @@ const LikeModal = () => {
         <div className="p-2  overflow-y-scroll h-full">
           {likesUser.length > 0 &&
             likesUser.map((user: IUser) => (
-              <Suspense fallback={<div>loading...</div>}>
+              <Suspense fallback={<div>loading...</div>} key={user._id}>
                 <div key={user._id} className="flex items-center gap-2 mb-2">
                   <div className="w-[55px] h-[55px] overflow-hidden rounded-full">
                     <Image
@@ -60,18 +60,20 @@ const LikeModal = () => {
                     </Link>
                     <p className="text-gray-500">{user?.name}</p>
                   </div>
-                  <button
-                    className={`${
-                      userData.followings.includes(user?._id)
-                        ? "bg-gray-200"
-                        : "bg-blue-400 text-white"
-                    } px-2 py-1 rounded-md`}
-                    onClick={() => follow.mutate(user?._id)}
-                  >
-                    {userData.followings.includes(user?._id)
-                      ? "unFollow"
-                      : "follow"}
-                  </button>
+                  {userData?._id !== user?._id && (
+                    <button
+                      className={`${
+                        userData.followings.includes(user?._id)
+                          ? "bg-gray-200"
+                          : "bg-blue-400 text-white"
+                      } px-2 py-1 rounded-md`}
+                      onClick={() => follow.mutate(user?._id)}
+                    >
+                      {userData.followings.includes(user?._id)
+                        ? "unFollow"
+                        : "follow"}
+                    </button>
+                  )}
                 </div>
               </Suspense>
             ))}

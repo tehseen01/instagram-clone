@@ -7,6 +7,7 @@ import { useAppDispatch } from "../../redux/store";
 import { openProfileSetting } from "../../redux/slices/profileSlice";
 import { IUser } from "../../lib/interface";
 import { useWindowSize } from "../../hooks";
+import BackBtn from "../common/BackBtn";
 
 interface IProfileInfoProps {
   owner: IUser;
@@ -23,10 +24,7 @@ const ProfileInfo = ({ editProfile, owner, data }: IProfileInfoProps) => {
 
   return (
     <section className="md:p-8">
-      <div className="md:hidden flex items-center justify-between mb-2 px-4  py-3 max-md:border-b">
-        <div onClick={() => router.back()} className="cursor-pointer">
-          <BsChevronLeft className="w-5 h-5" />
-        </div>
+      <BackBtn>
         <div className="font-semibold">{data?.username}</div>
         {data?._id === owner._id ? (
           <button onClick={() => dispatch(openProfileSetting(true))}>
@@ -38,7 +36,7 @@ const ProfileInfo = ({ editProfile, owner, data }: IProfileInfoProps) => {
             <BsThreeDots className="w-5 h-5" />
           </button>
         )}
-      </div>
+      </BackBtn>
       {/* PROFILE INFO */}
       <div className="grid md:col-30-70 max-md:col-25-auto gap-x-6 items-center max-md:px-4 max-md:py-2">
         <div className="w-20 !h-20 md:w-48 md:!h-48">

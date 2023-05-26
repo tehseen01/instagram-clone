@@ -1,10 +1,10 @@
 import React from "react";
-import UnderConstruction from "../../components/common/UnderConstruction";
+import Notification from "../../components/notification/Notification";
 
 const index = () => {
   return (
     <main className="ml">
-      <UnderConstruction />
+      <Notification />
     </main>
   );
 };

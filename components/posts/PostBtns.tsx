@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch } from "../../redux/store";
 import { handelPostModal, openPostModal } from "../../redux/slices/modalSlice";
 import {
@@ -8,10 +8,8 @@ import {
   BsHeartFill,
   BsSend,
 } from "react-icons/bs";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { likePost } from "../../lib/requests";
-import { DataMessage, IError, IUser } from "../../lib/interface";
-import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
+import { DataMessage, IUser } from "../../lib/interface";
 
 interface IPostBtnProp {
   id: string;
