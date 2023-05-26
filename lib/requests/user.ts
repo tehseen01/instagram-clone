@@ -1,5 +1,10 @@
 import { makeRequest } from ".";
-import { DataMessage, IUpdateProfile, IUser } from "../interface";
+import {
+  DataMessage,
+  INotification,
+  IUpdateProfile,
+  IUser,
+} from "../interface";
 
 export const getProfile = async (): Promise<IUser> => {
   try {
@@ -84,6 +89,19 @@ export const followOrUnFollowUser = async (
   try {
     const { data } = await makeRequest.put(`/user/follow/${id}`);
     return data;
+  } catch (err) {
+    if (err.response && err.response.data) {
+      throw new Error(err.response.data.message);
+    }
+    console.log(err);
+    throw new Error(err.message);
+  }
+};
+
+export const userNotification = async (): Promise<INotification[]> => {
+  try {
+    const { data } = await makeRequest.get(`/user/me/notification`);
+    return data.notification;
   } catch (err) {
     if (err.response && err.response.data) {
       throw new Error(err.response.data.message);

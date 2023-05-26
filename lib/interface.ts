@@ -90,3 +90,21 @@ export interface IError {
   };
   message: string;
 }
+
+interface IUserForNotification
+  extends Pick<IUser, "_id" | "username" | "profilePicture"> {}
+interface IPostForNotification {
+  _id: string;
+  img: string;
+  userId: string;
+}
+
+export interface INotification {
+  _id: string;
+  recipient: string;
+  sender: IUserForNotification;
+  post?: IPostForNotification;
+  comment?: string;
+  type: string;
+  createdAt: Date;
+}

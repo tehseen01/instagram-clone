@@ -10,7 +10,10 @@ import type { AppProps } from "next/app";
 
 const queryClient = new QueryClient();
 
-export default function App({ Component, pageProps: { ...pageProps } }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { ...pageProps },
+}: AppProps) {
   toast({
     position: "top-center",
     autoClose: 5000,
@@ -20,7 +23,7 @@ export default function App({ Component, pageProps: { ...pageProps } }: AppProps
     draggable: true,
     progress: undefined,
     theme: "light",
-  } as any)
+  } as any);
 
   return (
     <QueryClientProvider client={queryClient}>
