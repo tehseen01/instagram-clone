@@ -63,13 +63,17 @@ const LikeModal = () => {
                   {userData?._id !== user?._id && (
                     <button
                       className={`${
-                        userData.followings.includes(user?._id)
+                        userData.followings.some(
+                          (followingUser) => followingUser._id === user?._id
+                        )
                           ? "bg-gray-200"
                           : "bg-blue-400 text-white"
                       } px-2 py-1 rounded-md`}
                       onClick={() => follow.mutate(user?._id)}
                     >
-                      {userData.followings.includes(user?._id)
+                      {userData.followings.some(
+                        (followingUser) => followingUser._id === user?._id
+                      )
                         ? "unFollow"
                         : "follow"}
                     </button>

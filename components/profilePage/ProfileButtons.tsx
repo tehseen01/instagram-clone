@@ -40,7 +40,7 @@ const ProfileButtons = ({
         </div>
       ) : (
         <div>
-          {owner?.followings?.includes(profileData?._id) ? (
+          {owner?.followings?.some((user) => user._id === profileData?._id) ? (
             <div className="flex items-center max-sm:justify-center gap-10">
               <button
                 className="py-1 px-3 bg-blue-400 rounded-md max-sm:w-full text-center hover:bg-blue-500 text-white"

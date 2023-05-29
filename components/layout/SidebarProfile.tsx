@@ -4,7 +4,7 @@ import React from "react";
 import { IUser } from "../../lib/interface";
 
 interface SidebarProfileProp {
-  data: IUser
+  data: IUser;
 }
 
 const SidebarProfile = ({ data }: SidebarProfileProp) => {
@@ -18,7 +18,7 @@ const SidebarProfile = ({ data }: SidebarProfileProp) => {
         <Image
           src={data?.profilePicture || "/blank-profile.jpg"}
           alt={data?.username || "username"}
-          className="rounded-full p-1 border border-red-400 w-24 !h-24 object-cover"
+          className="rounded-full w-24 !h-24 object-cover"
           width={200}
           height={200}
         />

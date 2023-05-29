@@ -17,6 +17,10 @@
     @apply xl:ml-60 md:ml-20;
   }
 
+  .h-400-41 {
+    height: calc(400px - 42px);
+  }
+
   .btn {
     @apply h-6 w-6 hover:opacity-50 cursor-pointer transition-all duration-150 ease-out;
   }

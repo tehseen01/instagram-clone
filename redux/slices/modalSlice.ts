@@ -13,7 +13,7 @@ const initialState: ModalState = {
   isOpenPostMenuModal: false,
   postMenuControl: {},
   isDeleteComment: false,
-}
+};
 
 const modalSlice = createSlice({
   name: "modal",
@@ -86,7 +86,10 @@ const modalSlice = createSlice({
       state.postMenuControl = action.payload;
     },
 
-    closePostMenuModal: (state: IModalSlice, action: PayloadAction<boolean>) => {
+    closePostMenuModal: (
+      state: IModalSlice,
+      action: PayloadAction<boolean>
+    ) => {
       state.isOpenPostMenuModal = action.payload;
       if (state.isOpenPostMenuModal === false) {
         document.body.style.overflow = "visible";
@@ -98,7 +101,10 @@ const modalSlice = createSlice({
       state.isDeleteComment = action.payload;
     },
 
-    closeDeleteComment: (state: IModalSlice, action: PayloadAction<boolean>) => {
+    closeDeleteComment: (
+      state: IModalSlice,
+      action: PayloadAction<boolean>
+    ) => {
       state.isDeleteComment = action.payload;
     },
   },

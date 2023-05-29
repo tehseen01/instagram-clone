@@ -20,6 +20,7 @@ import { useAppDispatch, useAppSelector } from "../redux/store";
 import { fetchUser, getProfile } from "../lib/requests";
 import { IError } from "../lib/interface";
 import { toast } from "react-toastify";
+import FollowsModal from "../components/profilePage/FollowsModal";
 
 const profile = () => {
   const router = useRouter();
@@ -29,6 +30,8 @@ const profile = () => {
   const { isEditProfile, isProfileSetting, isChangePassword } = useAppSelector(
     (state) => state.profile
   );
+
+  const { isFollowModal } = useAppSelector((state) => state.follow);
 
   const { isLoading, data, isError, error } = useQuery({
     queryKey: ["user", profile],
@@ -69,6 +72,7 @@ const profile = () => {
       {isEditProfile && <EditProfile />}
       {isProfileSetting && <ProfileSetting />}
       {isChangePassword && <ChangePassword owner={owner} />}
+      {isFollowModal && <FollowsModal data={data} owner={owner} />}
     </>
   );
 };

@@ -3,11 +3,13 @@ import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import modalSlice from "./slices/modalSlice";
 import profileSlice from "./slices/profileSlice";
 import { useSelector } from "react-redux";
+import followSlice from "./slices/followSlice";
 
 const store = configureStore({
   reducer: {
     profile: profileSlice,
     modal: modalSlice,
+    follow: followSlice,
   },
 });
 
