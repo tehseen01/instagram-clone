@@ -40,8 +40,8 @@ export interface IUser {
   password: string;
   isAdmin: boolean;
   posts: IPost[];
-  followers: string[];
-  followings: string[];
+  followers: IUser[];
+  followings: IUser[];
   createdAt: Date;
   updatedAt: Date;
 }

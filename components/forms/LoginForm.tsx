@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { loginSchema } from "../../lib/validation";
+import { toast } from "react-toastify";
 
 interface IInitialValues {
   usernameOrEmail: string;
@@ -29,6 +30,7 @@ export const LoginForm = () => {
     },
     onError: (error: IErrorProp) => {
       console.log(error);
+      toast.error(error.message);
     },
   });
 
@@ -48,7 +50,7 @@ export const LoginForm = () => {
       initialValues={initialValues}
       validationSchema={loginSchema}
     >
-      {({ isSubmitting, isValid, dirty }) => (
+      {({ isSubmitting, isValid, dirty, touched, errors }) => (
         <Form
           className="flex flex-col items-center gap-4 mt-8"
           autoComplete="off"
@@ -65,16 +67,17 @@ export const LoginForm = () => {
               placeholder="Username or email"
               name="usernameOrEmail"
               id="usernameOrEmail"
-              className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 focus:border-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
+              className={`flex h-10 w-full rounded-md border ${
+                touched.usernameOrEmail && errors.usernameOrEmail
+                  ? "border-red-500"
+                  : "border-gray-300"
+              } bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 focus:border-gray-400 disabled:cursor-not-allowed disabled:opacity-50`}
             />
             <ErrorMessage
               className="mt-1 text-xs text-red-500"
               name="usernameOrEmail"
               component="div"
             />
-            {isError && error.status === 401 ? (
-              <div className="mt-1 text-xs text-red-500">{error.message}</div>
-            ) : null}
           </div>
           <div className="w-full">
             <div className="flex items-center justify-between">
@@ -85,7 +88,7 @@ export const LoginForm = () => {
                 Password
               </label>
               <Link
-                href="/forgot/password"
+                href="#"
                 className="text-sm font-semibold text-black hover:underline"
               >
                 Forgot Password?
@@ -96,21 +99,33 @@ export const LoginForm = () => {
               name="password"
               id="password"
               placeholder="Password"
-              className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 focus:border-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
+              className={`flex h-10 w-full rounded-md border ${
+                touched.password && errors.password
+                  ? "border-red-500"
+                  : "border-gray-300"
+              } bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 focus:border-gray-400 disabled:cursor-not-allowed disabled:opacity-50`}
             />
             <ErrorMessage
               className="mt-1 text-xs text-red-500"
               name="password"
               component="div"
             />
-            {isError && error.status === 400 ? (
-              <div className="mt-1 text-xs text-red-500">{error.message}</div>
-            ) : null}
           </div>
           <button
             type="submit"
-            className="inline-flex w-full items-center mt-4 justify-center rounded-md bg-blue-400 px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-blue-500"
-            disabled={isLoading || isSubmitting || !dirty}
+            className={`inline-flex w-full items-center mt-4 justify-center rounded-md px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-blue-500 bg-blue-400 ${
+              (isSubmitting ||
+                isLoading ||
+                Object.keys(errors).length > 0 ||
+                !dirty) &&
+              "bg-gray-400 cursor-not-allowed hover:bg-gray-400"
+            }`}
+            disabled={
+              isLoading ||
+              isSubmitting ||
+              Object.keys(errors).length > 0 ||
+              !dirty
+            }
           >
             {isLoading || isSubmitting ? "loading..." : "Log in"}
           </button>
