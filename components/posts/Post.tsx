@@ -12,6 +12,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { likePost } from "../../lib/requests";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import PostImg from "./PostImg";
 
 interface IPostProp {
   id: string;
@@ -24,9 +25,6 @@ interface IPostProp {
 }
 
 const Post = ({ id, img, caption, likes, time, user }: IPostProp) => {
-  const [liked, setLiked] = useState(false);
-  const [animateHeart, setAnimateHeart] = useState(false);
-
   const dispatch = useAppDispatch();
   const queryClient = useQueryClient();
   const { mutate, data } = useMutation(likePost, {
@@ -40,41 +38,19 @@ const Post = ({ id, img, caption, likes, time, user }: IPostProp) => {
 
   return (
     <div className="md:p-4 py-2 lg:px-16">
-      {/* Header */}
       <PostHeader user={user} time={time} id={id} />
 
-      {/* Img */}
-      <div className="flex justify-center max-h-[600px] relative">
-        <Image
-          width={450}
-          height={450}
-          src={img}
-          alt={`this post uploaded by ${user?.username} at ${time}`}
-          className="object-scale-down  md:border-x w-full"
-          onDoubleClick={() => {
-            mutate(id);
-            setAnimateHeart(true);
-            setTimeout(() => {
-              setAnimateHeart(false);
-            }, 1000);
-          }}
-        />
-        {animateHeart && (
-          <div className="absolute w-full h-full flex items-center justify-center">
-            <BsHeartFill className="w-16 h-16 text-white animate-ping" />
-          </div>
-        )}
-      </div>
+      <PostImg
+        time={time}
+        username={user.username}
+        mutate={mutate}
+        img={img}
+        id={id}
+        extraClassName="flex justify-center"
+      />
 
       {/* Buttons */}
-      <PostBtn
-        likes={likes}
-        id={id}
-        data={data}
-        mutate={mutate}
-        liked={liked}
-        setLiked={setLiked}
-      />
+      <PostBtn likes={likes} id={id} data={data} mutate={mutate} />
 
       {likes && likes.length > 0 && (
         <div

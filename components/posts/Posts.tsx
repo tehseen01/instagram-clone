@@ -44,7 +44,7 @@ const Posts = () => {
   return (
     <div className="mb-16">
       {isError && <h2>{error.message}</h2>}
-      {data && data?.pages.length > 0 ? (
+      {data && data?.pages?.length > 0 ? (
         <InfiniteScroll
           dataLength={data ? data.pages?.length : 0}
           next={fetchNextPage}

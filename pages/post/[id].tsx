@@ -13,6 +13,7 @@ import { useAppSelector } from "../../redux/store";
 import { getSinglePost } from "../../lib/requests";
 import { IError } from "../../lib/interface";
 import { toast } from "react-toastify";
+import SinglePost from "../../components/posts/SinglePost";
 
 const post = () => {
   const router = useRouter();
@@ -36,24 +37,13 @@ const post = () => {
 
   return (
     <main className="ml sm:p-2 mb-16">
-      <div className="px-4 py-2 flex items-center justify-center border-b">
+      <div className="px-4 py-2 flex items-center justify-center border-b md:hidden">
         <div onClick={() => router.back()} className="cursor-pointer flex-1">
           <BsChevronLeft className="w-5 h-5" />
         </div>
         <div className="flex-1 font-medium basis-2">Photo</div>
       </div>
-      {data && Object.keys(data).length > 0 ? (
-        <Post
-          key={data?._id}
-          id={data?._id}
-          caption={data?.caption}
-          comments={data?.comments}
-          img={data?.img}
-          likes={data?.likes}
-          time={data?.createdAt}
-          user={data?.userId}
-        />
-      ) : null}
+      <SinglePost singleData={data} />
 
       {isOpenPostMenuModal === true && <PostMenuModal />}
       {isPostModal && <CommentModal />}
