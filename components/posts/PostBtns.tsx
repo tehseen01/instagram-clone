@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch } from "../../redux/store";
 import { handelPostModal, openPostModal } from "../../redux/slices/modalSlice";
 import {
@@ -16,18 +16,10 @@ interface IPostBtnProp {
   likes: IUser[];
   data: DataMessage;
   mutate: (id: string) => void;
-  liked: boolean;
-  setLiked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const PostBtn = ({
-  likes,
-  id,
-  mutate,
-  data,
-  liked,
-  setLiked,
-}: IPostBtnProp) => {
+const PostBtn = ({ likes, id, mutate, data }: IPostBtnProp) => {
+  const [liked, setLiked] = useState(false);
   const dispatch = useAppDispatch();
 
   const queryClient = useQueryClient();

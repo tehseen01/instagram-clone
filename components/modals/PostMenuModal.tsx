@@ -9,6 +9,7 @@ import { closePostMenuModal } from "../../redux/slices/modalSlice";
 import { deletePost } from "../../lib/requests";
 import { useFollowControl, useProfileData } from "../../hooks";
 import { IError } from "../../lib/interface";
+import Link from "next/link";
 
 const PostMenuModal = () => {
   const { follow } = useFollowControl();
@@ -53,6 +54,13 @@ const PostMenuModal = () => {
         <div className="flex items-center gap-4 sm:justify-center p-3 border-b">
           <BsSend className="w-5 h-5 block sm:hidden" /> <span>Share</span>
         </div>
+        <Link
+          href={`/post/${postMenuControl?.id}`}
+          className="flex items-center gap-4 sm:justify-center p-3 border-b"
+          onClick={() => dispatch(closePostMenuModal(false))}
+        >
+          <span>Go to post</span>
+        </Link>
         {postMenuControl &&
         Object.entries(postMenuControl).length > 0 &&
         userData.posts.some((post) => post._id === postMenuControl?.id) ? (
