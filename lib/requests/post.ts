@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { makeRequest } from ".";
+import { makeRequest } from "./index";
 import { DataMessage, IPost } from "../interface";
 
 interface ICreatePost {

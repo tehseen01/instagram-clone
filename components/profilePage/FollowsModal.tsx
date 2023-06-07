@@ -47,7 +47,7 @@ const FollowsModal = ({ data, owner }: IFollowModalProp) => {
           </div>
         </div>{" "}
         {isFollowData ? (
-          <div className="p-4 overflow-y-scroll h-400-41">
+          <div className="p-4 overflow-y-scroll h-[calc(400px_-_42px)]">
             {data.followers.map((user) => (
               <FollowList user={user} key={user._id}>
                 <button
@@ -72,7 +72,7 @@ const FollowsModal = ({ data, owner }: IFollowModalProp) => {
             ))}
           </div>
         ) : (
-          <div className="p-4 overflow-y-scroll h-400-41">
+          <div className="p-4 overflow-y-scroll h-[calc(400px_-_42px)]">
             {data.followings.map((user) => (
               <FollowList user={user} key={user._id}>
                 <button

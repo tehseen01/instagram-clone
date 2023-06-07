@@ -114,11 +114,11 @@ const Sidebar = ({ data }: SideBarProp) => {
 
         <div className="flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md">
           <Link
-            href={"/"}
+            href={"/chat"}
             className="flex items-center gap-3"
-            onClick={() => setTab("/")}
+            onClick={() => setTab("/chat")}
           >
-            {tab === "/message" ? (
+            {tab === "/chat" ? (
               <BsSendFill className="w-6 h-6" />
             ) : (
               <BsSend className="w-6 h-6" />

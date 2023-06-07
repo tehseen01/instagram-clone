@@ -10,10 +10,13 @@ import type { AppProps } from "next/app";
 
 const queryClient = new QueryClient();
 
-export default function App({
-  Component,
-  pageProps: { ...pageProps },
-}: AppProps) {
+type PageComponent = AppProps & {
+  Component: AppProps["Component"] & {
+    PageLayout?: React.ComponentType<any>;
+  };
+};
+
+export default function App({ Component, pageProps }: PageComponent) {
   toast({
     position: "top-center",
     autoClose: 5000,
@@ -29,7 +32,13 @@ export default function App({
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <Layout>
-          <Component {...pageProps} />
+          {Component.PageLayout ? (
+            <Component.PageLayout>
+              <Component {...pageProps} />
+            </Component.PageLayout>
+          ) : (
+            <Component {...pageProps} />
+          )}
         </Layout>
         <ToastContainer
           position="top-center"
