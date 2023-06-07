@@ -30,7 +30,7 @@ export const Conversation = ({
     (participant) => participant._id !== userData?._id
   );
 
-  const pusher = new Pusher("faf59d87efe6da6caecc", {
+  const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY, {
     cluster: "ap2",
   });
 
