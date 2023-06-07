@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { BsSend } from "react-icons/bs";
 
 const Header = () => {
@@ -9,9 +10,9 @@ const Header = () => {
       </div>
 
       <div className="flex items-center">
-        <div>
+        <Link href={"/chat"}>
           <BsSend className="w-5 h-5" />
-        </div>
+        </Link>
       </div>
     </header>
   );

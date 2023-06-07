@@ -80,7 +80,7 @@ const NewPost = () => {
         </div>
         {image ? (
           <form
-            className="grid sm:grid-cols-2 grid-cols-1 gap-4 newPost-h max-md:grid-rows-2 md:auto-rows-[100%]"
+            className="grid sm:grid-cols-2 grid-cols-1 gap-4 h-[calc(100%_-_41px)] max-md:grid-rows-2 md:auto-rows-[100%]"
             onSubmit={submitHandler}
           >
             <div>
