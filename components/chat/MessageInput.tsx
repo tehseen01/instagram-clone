@@ -6,8 +6,13 @@ import { IChat, sendMessage } from "../../lib/requests";
 export const MessageInput = ({ chatAccess }: { chatAccess: IChat }) => {
   const [inputValue, setInputValue] = useState("");
 
+  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
     mutationFn: sendMessage,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["messages"]);
+    },
   });
 
   const messageContent = {

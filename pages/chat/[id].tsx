@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import Loader from "../../components/loaders/Loader";
 
 const chatBox = () => {
-  const [messages, setMessages] = useState([]);
   const router = useRouter();
   const userId = router.query.id?.toString();
 
@@ -36,12 +35,9 @@ const chatBox = () => {
   }, [userId]);
 
   const chatId = chatAccess?._id;
-  const { isLoading: messageLoading } = useQuery({
+  const { isLoading: messageLoading, data: messages } = useQuery({
     queryKey: ["messages"],
     queryFn: () => getAllMessage(chatId),
-    onSuccess: (data) => {
-      setMessages(data);
-    },
     enabled: !!chatId,
   });
 
@@ -55,11 +51,7 @@ const chatBox = () => {
 
   return (
     <div className="relative h-screen max-md:z-50 bg-white">
-      <Conversation
-        messages={messages}
-        chatAccess={chatAccess}
-        setMessages={setMessages}
-      />
+      <Conversation messages={messages} chatAccess={chatAccess} />
       <MessageInput chatAccess={chatAccess} />
     </div>
   );
