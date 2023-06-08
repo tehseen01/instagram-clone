@@ -11,18 +11,42 @@ import {
   isSameSender,
   isSameUser,
 } from "../../lib/config/chatLogic";
+import Pusher from "pusher-js";
 
 interface IConversationProp {
   messages: IAllMessages[];
   chatAccess: IChat;
+  setMessages: React.Dispatch<React.SetStateAction<IAllMessages[]>>;
 }
 
-export const Conversation = ({ messages, chatAccess }: IConversationProp) => {
+export const Conversation = ({
+  messages,
+  chatAccess,
+  setMessages,
+}: IConversationProp) => {
   const { userData } = useProfileData();
 
   const participant = chatAccess?.participants.find(
     (participant) => participant._id !== userData?._id
   );
+
+  const pusher = new Pusher("1ee295b3db4babfd02f0", {
+    cluster: "ap2",
+  });
+
+  useEffect(() => {
+    const channel = pusher.subscribe("chat");
+    const eventHandler = (data: IAllMessages) => {
+      setMessages([...messages, data]);
+    };
+
+    channel.bind("new-message", eventHandler);
+
+    return () => {
+      channel.unbind("new-message", eventHandler);
+      pusher.unsubscribe("chat");
+    };
+  }, [messages]);
 
   return (
     <section className="overflow-y-scroll h-[calc(100vh_-_60px)] relative ">
