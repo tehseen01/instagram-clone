@@ -50,7 +50,7 @@ const CommentModal = () => {
           </button>
 
           {/* COMMENT CONTENT */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 sm:mx-16 min-h-screen sm:h-[calc(100vh_-_48px)] overflow-hidden sm:rounded-sm h-full auto-rows-[100%]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 sm:mx-16 sm:h-[calc(100vh_-_48px)] overflow-hidden sm:rounded-sm auto-rows-[100%]">
             {/* IMAGE BOX - FOR DESKTOP */}
             <div className="hidden sm:block bg-gray-50">
               <Image

@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { createPost } from "../../lib/requests";
 import { IError } from "../../lib/interface";
 import { toast } from "react-toastify";
+import clsx from "clsx";
 
 const NewPost = () => {
   const router = useRouter();
@@ -62,9 +63,10 @@ const NewPost = () => {
         <MdClose className="w-6 h-6" />
       </button>
       <div
-        className={`h-[350px] bg-white md:rounded-md w-full ${
-          image ? "max-md:h-full md:w-[80%]" : "sm:w-[350px]"
-        }`}
+        className={clsx(
+          "h-[350px] bg-white md:rounded-md ",
+          image ? "max-md:h-full md:w-[80%] w-full" : "sm:w-[350px] w-[90%]"
+        )}
       >
         <div className="flex items-center justify-between border-b p-2">
           {image && (
@@ -77,6 +79,12 @@ const NewPost = () => {
             </button>
           )}
           <p className="flex-1 text-center  font-medium">Create new post</p>
+          <button
+            className="block z-20"
+            onClick={() => dispatch(closeNewPostModal(false))}
+          >
+            <MdClose className="w-6 h-6" />
+          </button>
         </div>
         {image ? (
           <form
