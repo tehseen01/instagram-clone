@@ -24,7 +24,7 @@
   .overlay {
     background-color: rgba(0, 0, 0, 0.6);
     overflow: hidden;
-    @apply fixed top-0 right-0 left-0 bottom-0 z-20;
+    @apply fixed top-0 right-0 left-0 bottom-0 z-50;
   }
 
   .full-row {

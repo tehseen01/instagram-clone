@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 import { IUser } from "../../lib/interface";
 import { openNewPostModal } from "../../redux/slices/modalSlice";
 import { logoutUser } from "../../lib/requests";
+import clsx from "clsx";
 
 interface SideBarProp {
   data: IUser;
@@ -40,6 +41,26 @@ const Sidebar = ({ data }: SideBarProp) => {
   useEffect(() => {
     setTab((prevState) => window.location.pathname);
   }, []);
+
+  useEffect(() => {
+    const checkTab = async () => {
+      switch (router.pathname) {
+        case "/":
+          return setTab("/");
+        case "/notification":
+          return setTab("/notification");
+        case "/explore":
+          return setTab("/explore");
+        case "/chat":
+          return setTab("/chat");
+
+        default:
+          return setTab("");
+      }
+    };
+
+    checkTab();
+  }, [router]);
 
   return (
     <section
@@ -67,65 +88,73 @@ const Sidebar = ({ data }: SideBarProp) => {
 
       {/* Sidebar links */}
       <div className="flex md:flex-col max-xl:items-center gap-2 max-md:w-screen md:justify-between justify-around max-md:px-4 max-md:py-2 hideChild3">
-        <div className="flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md">
-          <Link
-            href={"/"}
-            className="flex items-center gap-3"
-            onClick={() => setTab("/")}
-          >
+        <Link
+          href={"/"}
+          className={clsx(
+            "flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md",
+            tab === "/" ? "md:bg-gray-50" : ""
+          )}
+        >
+          <div className="flex items-center gap-3">
             {tab === "/" ? (
               <MdHomeFilled className="w-6 h-6" />
             ) : (
               <BsHouse className="w-6 h-6" />
             )}
             <span className={`hidden xl:block`}>Home</span>
-          </Link>
-        </div>
+          </div>
+        </Link>
 
-        <div className="flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md">
-          <Link
-            href={"/explore"}
-            className="flex items-center gap-3"
-            onClick={() => setTab("/explore")}
-          >
+        <Link
+          href={"/explore"}
+          className={clsx(
+            "flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md",
+            tab === "/explore" ? "md:bg-gray-50" : ""
+          )}
+        >
+          <div className="flex items-center gap-3">
             {tab === "/explore" ? (
               <RiSearch2Fill className="w-6 h-6" />
             ) : (
               <FiSearch className="w-6 h-6" />
             )}
             <span className={`hidden xl:block`}>Explore</span>
-          </Link>
-        </div>
+          </div>
+        </Link>
 
-        <div className="flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md">
-          <Link
-            href={"/notification"}
-            className="flex items-center gap-3"
-            onClick={() => setTab("/notification")}
-          >
+        <Link
+          href={"/notification"}
+          className={clsx(
+            "flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md",
+            tab === "/notification" ? "md:bg-gray-50" : ""
+          )}
+        >
+          <div className="flex items-center gap-3">
             {tab === "/notification" ? (
               <BsFillHeartFill className="w-6 h-6" />
             ) : (
               <BsHeart className="w-6 h-6" />
             )}
             <span className={`hidden xl:block`}>Notification</span>
-          </Link>
-        </div>
+          </div>
+        </Link>
 
-        <div className="flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md">
-          <Link
-            href={"/chat"}
-            className="flex items-center gap-3"
-            onClick={() => setTab("/chat")}
-          >
+        <Link
+          href={"/chat"}
+          className={clsx(
+            "flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md",
+            tab === "/chat" ? "md:bg-gray-50" : ""
+          )}
+        >
+          <div className="flex items-center gap-3">
             {tab === "/chat" ? (
               <BsSendFill className="w-6 h-6" />
             ) : (
               <BsSend className="w-6 h-6" />
             )}
             <span className={`hidden xl:block`}>Messages</span>
-          </Link>
-        </div>
+          </div>
+        </Link>
 
         <div className="flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md">
           <div

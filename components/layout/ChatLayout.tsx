@@ -27,7 +27,7 @@ const ChatLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="ml flex ">
-      <aside className="border-r md:w-[350px] w-full bg-white z-50">
+      <aside className="border-r md:w-[350px] w-full bg-white z-20">
         <SearchUser />
         <div className="text-lg font-semibold p-2">Messages</div>
         <div className="overflow-y-scroll h-[calc(100vh_-_103px)]">
