@@ -3,7 +3,6 @@
 This repository contains the code for an Instagram clone, a frontend web application built using Next.js, Tailwind CSS, Redux Toolkit, and React Query. It aims to replicate the core features and design of the popular social media platform, Instagram.
 
 ![Instagram Clone](https://github.com/tehseen01/instagram-clone/assets/86504467/18b1b53b-68ad-4808-ac98-253112b17206)
-![Mobile version](https://github.com/tehseen01/instagram-clone/assets/86504467/a839716d-ccb2-49ba-ad11-e79f6c6c5d93)
 
 
 ## Features
